@@ -255,10 +255,11 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                         echo "<td>";
                                         echo "<textarea>".$row["description"] ."</textarea>";
                                         echo "</td>";
-
+                                        $b_est_une_fin = $row["est_une_fin"];
                                         echo "<td>";
+
                                         echo "<input type='checkbox' name='est_une_fin'";
-                                          if($p == 1)
+                                          if($b_est_une_fin == 1)
                                           {
                                             echo "checked";
                                           }
