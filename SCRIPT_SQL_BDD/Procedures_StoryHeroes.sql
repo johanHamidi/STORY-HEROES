@@ -88,10 +88,11 @@ INSERT INTO story_genre (fk_id_story, fk_id_genre)
 VALUES (pIdStory, pIdGenre)$$
 
 DROP PROCEDURE IF EXISTS `CRUD_STORY_INSERT`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_STORY_INSERT` (IN `pTitre` VARCHAR(50) CHARSET utf8, IN `pResume` VARCHAR(500) CHARSET utf8, IN `pEst_publie` TINYINT(1), `pIdAuteur` INT(10))  MODIFIES SQL DATA
+CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_STORY_INSERT`(IN `pTitre` VARCHAR(50) CHARSET utf8, IN `pResume` VARCHAR(500) CHARSET utf8, IN `pEst_publie` TINYINT(1), IN `pImage` VARCHAR(500), IN `pIdAuteur` INT(10))
+    MODIFIES SQL DATA
     COMMENT 'CRUD INSERT de la table story'
-INSERT INTO story (titre, resume, est_publie, fk_id_auteur)
-Values (pTitre, pResume, pEst_publie, pIdAuteur)$$
+INSERT INTO story (titre, resume, est_publie, image, fk_id_auteur)
+Values (pTitre, pResume, pEst_publie,pImage, pIdAuteur)$$
 
 DROP PROCEDURE IF EXISTS `CRUD_STORY_READ`$$
 CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_STORY_READ` (IN `pId` INT(10))  NO SQL
