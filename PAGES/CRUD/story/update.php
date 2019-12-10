@@ -242,7 +242,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                       while($row = $result->fetch()){
                                         echo "<tr id=" . $row["num_etape"] . ">";
                                         echo "<th scope='row'>";
-                                        echo $row["num_etape"];
+                                        echo "<input type='text' value='". $row["num_etape"] ."'></input>";
                                         echo "</th>";
 
                                         echo "<td>";
