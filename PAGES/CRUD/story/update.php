@@ -248,7 +248,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                         echo "</th>";
 
                                         echo "<td>";
-<<<<<<< HEAD
+
                                         echo "<input type='text' value='". $row["titre"] ."'></input>";
                                         echo "</td>";
 
@@ -270,10 +270,9 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                           }
                                           echo "></input>";
 
-=======
+
                                         echo $row["titre"];
-                                        echo "<a href='delete.php?id=". $row["id"] ."&story = ' title='Supprimer cette étape' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
->>>>>>> 7ba96f617f6b013bb837069db64e772e3b44d7ba
+
                                         echo "</td>";
 
                                         echo "<td>";
