@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../style/bootstrap.css">
-    <script src="../style/jquery.min.js"></script>
-    <script src="../style/bootstrap.js"></script>
+    <link rel="stylesheet" href="./CRUD/style/bootstrap.css">
+    <script src="./CRUD/style/jquery.min.js"></script>
+    <script src="./CRUD/style/bootstrap.js"></script>
     <style type="text/css">
         .wrapper{
             width: 90%;
@@ -56,8 +56,8 @@
                                   if($row['est_publie'] == 1){$class = "bg-success"; $contenu = "En ligne";}else{$class = "bg-danger"; $contenu = "Hors ligne";}
 
                                     echo "<tr>";
-                                        echo "<td>" . $row['titre'] . "</td>";
-                                        echo "<td>" . $row['pseudo'] . "</td>";
+                                        echo "<td>" . utf8_decode($row['titre']) . "</td>";
+                                        echo "<td>" . utf8_decode($row['pseudo']) . "</td>";
                                         echo "<td class=$class>" . $contenu . "</td>";
                                         echo "<td>";
                                             echo "<a href='update.php?id=". $row['id'] ."' title='Modifier cette histoire' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
