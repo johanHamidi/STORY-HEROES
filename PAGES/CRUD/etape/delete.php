@@ -17,7 +17,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         // Attempt to execute the prepared statement
         if($stmt->execute()){
             // Records deleted successfully. Redirect to landing page
-            header("location: index.php");
+            header("location: ../../home.php");
             exit();
         } else{
             echo "Oops! Something went wrong. Please try again later.";
