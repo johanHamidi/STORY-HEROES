@@ -70,7 +70,7 @@ if ( isset($_POST['pseudo'], $_POST['mdp']) ) {
                     <h1>Story Heroes</h1>
                 </div>
             </div >
-            <form class="centerForm" action="" method="post">
+            <form class="centerForm" action="" method="POST">
                 <div class="flexForm">
                     <label>
                             Votre nom d'héros   
@@ -85,7 +85,7 @@ if ( isset($_POST['pseudo'], $_POST['mdp']) ) {
                     <input type="password" name="mdp" id="mdp" required/>
                 </div>
             <button class="btnConnexion" type="submit">Connexion</button>
-            <p>Vous n'est pas encore inscris ? <a href="#" class="rejoindre">Rejoignez-nous</a></p>
+            <p>Vous n'est pas encore inscris ? <a href="inscription.php" class="rejoindre">Rejoignez-nous</a></p>
             </form>
         </div> 
     </div>
