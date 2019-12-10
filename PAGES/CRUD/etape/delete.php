@@ -17,7 +17,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         // Attempt to execute the prepared statement
         if($stmt->execute()){
             // Records deleted successfully. Redirect to landing page
-            header("location: index.php");
+            header("location: ../../home.php");
             exit();
         } else{
             echo "Oops! Something went wrong. Please try again later.";
@@ -65,7 +65,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                             <p>Etes vous sur de vouloir supprimer cet utilisateur</p><br>
                             <p>
                                 <input type="submit" value="Oui" class="btn btn-danger">
-                                <a href="index.php" class="btn btn-default">Non</a>
+                                <a href="../../home.php" class="btn btn-default">Non</a>
                             </p>
                         </div>
                     </form>
