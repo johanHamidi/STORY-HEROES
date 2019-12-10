@@ -69,9 +69,10 @@ DELETE FROM `story`
 WHERE id = pId$$
 
 DROP PROCEDURE IF EXISTS `CRUD_STORY_ETAPE_READ`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_STORY_ETAPE_READ` (IN `pId_Story` INT(10))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_STORY_ETAPE_READ`(IN `pId_Story` INT(10))
+    NO SQL
     COMMENT 'Récupère toutes les étapes d''une histoire'
-SELECT id, num_etape, titre
+SELECT id,titre, description, est_une_fin,image, num_etape
 FROM etape e
 LEFT JOIN story_etape se
 ON e.fk_id_story = se.fk_id_story AND e.id = se.fk_id_etape
@@ -162,11 +163,16 @@ ELSE
 END IF$$
 
 DROP PROCEDURE IF EXISTS `CRUD_STORY_GENRE_DELETE`$$
+<<<<<<< HEAD
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_STORY_GENRE_DELETE`(IN `pId` INT(10))  MODIFIES SQL DATA
     COMMENT 'CRUD DELETE de la table story_genre'
+=======
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_STORY_GENRE_DELETE`(IN `pFk_id_story` INT(10), IN `pFk_id_genre` INT(10))
+    NO SQL
+>>>>>>> b673890fffd147a4753abe72b59d4f0f1366faea
 DELETE FROM `story_genre`
 WHERE fk_id_story = pFk_id_story
-AND fk_id_genre = pFk_id_genre $$
+AND fk_id_genre = pFk_id_genre$$
 
 DELIMITER ;
 
