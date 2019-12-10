@@ -46,6 +46,7 @@
                                     echo "<tr>";
                                         echo "<th>Titre</th>";
                                         echo "<th>Auteur</th>";
+                                        echo "<th>Image</th>";
                                         echo "<th>Publiée</th>";
                                         echo "<th></th>";
                                     echo "</tr>";
@@ -58,6 +59,7 @@
                                     echo "<tr>";
                                         echo "<td>" . $row['titre'] . "</td>";
                                         echo "<td>" . $row['pseudo'] . "</td>";
+                                        echo "<td>" . $row['image'] . "</td>";
                                         echo "<td class=$class>" . $contenu . "</td>";
                                         echo "<td>";
                                             echo "<a href='update.php?id=". $row['id'] ."' title='Modifier cette histoire' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
