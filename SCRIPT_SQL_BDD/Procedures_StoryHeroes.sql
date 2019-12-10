@@ -5,19 +5,19 @@
 DELIMITER $$
 
 DROP PROCEDURE IF EXISTS `CRUD_ETAPE_DELETE`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_ETAPE_DELETE` (IN `pId` INT(10))  MODIFIES SQL DATA
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_ETAPE_DELETE` (IN `pId` INT(10))  MODIFIES SQL DATA
     COMMENT 'CRUD DELETE de la table etape'
 DELETE FROM `etape`
 WHERE id = pId$$
 
 DROP PROCEDURE IF EXISTS `CRUD_ETAPE_INSERT`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_ETAPE_INSERT` (IN `pTitre` VARCHAR(50) CHARSET utf8, IN `pDescription` VARCHAR(500) CHARSET utf8, IN `pImage` VARCHAR(100) CHARSET utf8, IN `pEstUneFin` TINYINT(1), IN `pFkIdStory` INT(10))  MODIFIES SQL DATA
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_ETAPE_INSERT` (IN `pTitre` VARCHAR(50) CHARSET utf8, IN `pDescription` VARCHAR(500) CHARSET utf8, IN `pImage` VARCHAR(100) CHARSET utf8, IN `pEstUneFin` TINYINT(1), IN `pFkIdStory` INT(10))  MODIFIES SQL DATA
     COMMENT 'CRUD INSERT de la table etape'
 INSERT INTO etape (titre, description, image, est_une_fin, fk_id_story)
 Values (pTitre, pDescription, pImage, pEstUneFin, pFkIdStory)$$
 
 DROP PROCEDURE IF EXISTS `CRUD_ETAPE_READ`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_ETAPE_READ` (IN `pId` INT(10))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_ETAPE_READ` (IN `pId` INT(10))  NO SQL
     COMMENT 'CRUD READ de la table etape'
 IF pId = 0 THEN
 	SELECT * FROM etape;
@@ -27,7 +27,7 @@ ELSE
 END IF$$
 
 DROP PROCEDURE IF EXISTS `CRUD_ETAPE_UPDATE`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_ETAPE_UPDATE` (IN `pId` INT(10), IN `pTitre` VARCHAR(50) CHARSET utf8, IN `pDescription` VARCHAR(500) CHARSET utf8, IN `pImage` VARCHAR(100) CHARSET utf8, IN `pEstUneFin` TINYINT(1))  MODIFIES SQL DATA
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_ETAPE_UPDATE` (IN `pId` INT(10), IN `pTitre` VARCHAR(50) CHARSET utf8, IN `pDescription` VARCHAR(500) CHARSET utf8, IN `pImage` VARCHAR(100) CHARSET utf8, IN `pEstUneFin` TINYINT(1))  MODIFIES SQL DATA
     COMMENT 'CRUD INSERT de la table etape'
 UPDATE etape
 SET titre = pTitre, description = pDescription, image = pImage, est_une_fin = pEstUneFin
@@ -40,13 +40,13 @@ DELETE FROM `genre`
 WHERE id = pId$$
 
 DROP PROCEDURE IF EXISTS `CRUD_GENRE_INSERT`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_GENRE_INSERT` (IN `pLibelle` VARCHAR(50))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_GENRE_INSERT` (IN `pLibelle` VARCHAR(50))  NO SQL
     COMMENT 'CRUD INSERT de la table genre'
 INSERT INTO genre (libelle)
 Values (pLibelle)$$
 
 DROP PROCEDURE IF EXISTS `CRUD_GENRE_READ`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_GENRE_READ` (IN `pId` INT(10))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_GENRE_READ` (IN `pId` INT(10))  NO SQL
     COMMENT 'CRUD READ de la table genre'
 IF pId = 0 THEN
 	SELECT * FROM genre;
@@ -63,7 +63,7 @@ SET libelle = pLibelle
 WHERE id = pId$$
 
 DROP PROCEDURE IF EXISTS `CRUD_STORY_DELETE`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_STORY_DELETE` (IN `pId` INT(10))  MODIFIES SQL DATA
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_STORY_DELETE` (IN `pId` INT(10))  MODIFIES SQL DATA
     COMMENT 'CRUD DELETE de la table story'
 DELETE FROM `story`
 WHERE id = pId$$
@@ -84,13 +84,13 @@ INSERT INTO story_genre (fk_id_story, fk_id_genre)
 VALUES (pIdStory, pIdGenre)$$
 
 DROP PROCEDURE IF EXISTS `CRUD_STORY_INSERT`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_STORY_INSERT` (IN `pTitre` VARCHAR(50) CHARSET utf8, IN `pResume` VARCHAR(500) CHARSET utf8, IN `pEst_publie` TINYINT(1), `pIdAuteur` INT(10))  MODIFIES SQL DATA
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_STORY_INSERT` (IN `pTitre` VARCHAR(50) CHARSET utf8, IN `pResume` VARCHAR(500) CHARSET utf8, IN `pEst_publie` TINYINT(1), `pIdAuteur` INT(10))  MODIFIES SQL DATA
     COMMENT 'CRUD INSERT de la table story'
 INSERT INTO story (titre, resume, est_publie, fk_id_auteur)
 Values (pTitre, pResume, pEst_publie, pIdAuteur)$$
 
 DROP PROCEDURE IF EXISTS `CRUD_STORY_READ`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_STORY_READ` (IN `pId` INT(10))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_STORY_READ` (IN `pId` INT(10))  NO SQL
 IF pId = 0 THEN
 	SELECT * FROM story;
 ELSE
@@ -99,26 +99,26 @@ ELSE
 END IF$$
 
 DROP PROCEDURE IF EXISTS `CRUD_STORY_UPDATE`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_STORY_UPDATE` (IN `pId` INT(10), IN `pTitre` VARCHAR(50) CHARSET utf8, IN `pResume` VARCHAR(500) CHARSET utf8, IN `pEst_publie` TINYINT(1))  MODIFIES SQL DATA
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_STORY_UPDATE` (IN `pId` INT(10), IN `pTitre` VARCHAR(50) CHARSET utf8, IN `pResume` VARCHAR(500) CHARSET utf8, IN `pEst_publie` TINYINT(1))  MODIFIES SQL DATA
     COMMENT 'CRUD UPDATE de la table user'
 UPDATE story
 SET titre = pTitre, resume = pResume, est_publie = pEst_publie
 WHERE id = pId$$
 
 DROP PROCEDURE IF EXISTS `CRUD_USER_DELETE`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_USER_DELETE` (IN `pId` INT(10))  MODIFIES SQL DATA
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_USER_DELETE` (IN `pId` INT(10))  MODIFIES SQL DATA
     COMMENT 'CRUD DELETE de la table user'
 DELETE FROM `user`
 WHERE id = pId$$
 
 DROP PROCEDURE IF EXISTS `CRUD_USER_INSERT`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_USER_INSERT` (IN `pPseudo` VARCHAR(20) CHARSET utf8, IN `pMdp` VARCHAR(300) CHARSET utf8, IN `pMail` VARCHAR(50) CHARSET utf8)  MODIFIES SQL DATA
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_USER_INSERT` (IN `pPseudo` VARCHAR(20) CHARSET utf8, IN `pMdp` VARCHAR(300) CHARSET utf8, IN `pMail` VARCHAR(50) CHARSET utf8)  MODIFIES SQL DATA
     COMMENT 'CRUD INSERT de la table user'
 INSERT INTO user (pseudo, mdp, mail)
 Values (pPseudo, pMdp, pMail)$$
 
 DROP PROCEDURE IF EXISTS `CRUD_USER_READ`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_USER_READ` (IN `pId` VARCHAR(20))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_USER_READ` (IN `pId` VARCHAR(20))  NO SQL
 IF pId = "0" THEN
 	SELECT * FROM user;
 ELSE
@@ -127,7 +127,7 @@ ELSE
 END IF$$
 
 DROP PROCEDURE IF EXISTS `CRUD_USER_UPDATE`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_USER_UPDATE` (IN `pId` INT(10), IN `pPseudo` VARCHAR(20) CHARSET utf8, IN `pMdp` VARCHAR(20) CHARSET utf8, IN `pMail` VARCHAR(50) CHARSET utf8)  MODIFIES SQL DATA
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_USER_UPDATE` (IN `pId` INT(10), IN `pPseudo` VARCHAR(20) CHARSET utf8, IN `pMdp` VARCHAR(20) CHARSET utf8, IN `pMail` VARCHAR(50) CHARSET utf8)  MODIFIES SQL DATA
     COMMENT 'CRUD UPDATE de la table user'
 UPDATE user
 SET pseudo = pPseudo, mdp = pMdp, mail = pMail
@@ -162,7 +162,7 @@ ELSE
 END IF$$
 
 DROP PROCEDURE IF EXISTS `CRUD_STORY_GENRE_DELETE`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_STORY_GENRE_DELETE`(IN `pId` INT(10))  MODIFIES SQL DATA
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_STORY_GENRE_DELETE`(IN `pId` INT(10))  MODIFIES SQL DATA
     COMMENT 'CRUD DELETE de la table story_genre'
 DELETE FROM `story_genre`
 WHERE fk_id_story = pFk_id_story
