@@ -174,8 +174,7 @@ AND fk_id_genre = pFk_id_genre $$
 --
 -- Déclencheurs AFTER INSERT de la table `etape`
 --
-DROP TRIGGER IF EXISTS `AFTER_INSERT_ETAPE`;
-DELIMITER $$
+DROP TRIGGER IF EXISTS `AFTER_INSERT_ETAPE`$$
 CREATE TRIGGER `AFTER_INSERT_ETAPE` AFTER INSERT ON `etape` FOR EACH ROW BEGIN
     -- Instructions
     DECLARE id_etape int ;
@@ -203,8 +202,7 @@ INSERT INTO story_etape(fk_id_story, fk_id_etape, num_etape)
 VALUES (id_story, id_etape, pnum_etape);
 
 
-END
-$$
+END $$
                  
 
 
