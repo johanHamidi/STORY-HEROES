@@ -69,9 +69,10 @@ DELETE FROM `story`
 WHERE id = pId$$
 
 DROP PROCEDURE IF EXISTS `CRUD_STORY_ETAPE_READ`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_STORY_ETAPE_READ` (IN `pId_Story` INT(10))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_STORY_ETAPE_READ`(IN `pId_Story` INT(10))
+    NO SQL
     COMMENT 'Récupère toutes les étapes d''une histoire'
-SELECT id, num_etape, titre
+SELECT id,titre, description, est_une_fin,image, num_etape
 FROM etape e
 LEFT JOIN story_etape se
 ON e.fk_id_story = se.fk_id_story AND e.id = se.fk_id_etape
