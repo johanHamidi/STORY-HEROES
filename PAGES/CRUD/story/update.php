@@ -195,7 +195,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                   echo "<tr>";
                                   echo "<td>";
                                   echo $row["libelle"];
-                                  echo "<a href='delete.php?id=". $row['fk_id_story'] . $row['fk_id_genre'] . "' title='Supprimer cette histoire' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                  echo "<a href='../story_genre/delete.php?story=". $row['fk_id_story'] . "&genre=" . $row['fk_id_genre'] . "' title='Supprimer ce genre' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                   echo "</td>";
                                   echo "</tr>";
                                 }
