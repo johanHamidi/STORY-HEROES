@@ -168,6 +168,46 @@ DELETE FROM `story_genre`
 WHERE fk_id_story = pFk_id_story
 AND fk_id_genre = pFk_id_genre $$
 
+
+-- TRIGERS --
+
+--
+-- Déclencheurs AFTER INSERT de la table `etape`
+--
+DROP TRIGGER IF EXISTS `AFTER_INSERT_ETAPE`;
+DELIMITER $$
+CREATE TRIGGER `AFTER_INSERT_ETAPE` AFTER INSERT ON `etape` FOR EACH ROW BEGIN
+    -- Instructions
+    DECLARE id_etape int ;
+DECLARE id_story int ;
+DECLARE pnum_etape int ; 
+DECLARE last_etape int ;
+
+SET id_etape = New.id;
+SET id_story = New.fk_id_story;
+SET last_etape = 0;
+
+SELECT max(num_etape) AS `last_etape` INTO last_etape FROM `story_etape` WHERE fk_id_story=id_story;
+                 
+IF last_etape >0 THEN
+
+	SET pnum_etape = last_etape + 1;
+
+ELSE
+
+	SET pnum_etape = 1;
+	
+END IF;
+
+INSERT INTO story_etape(fk_id_story, fk_id_etape, num_etape)
+VALUES (id_story, id_etape, pnum_etape);
+
+
+END
+$$
+                 
+
+
 DELIMITER ;
 
 -- --------------------------------------------------------

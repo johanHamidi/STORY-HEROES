@@ -223,7 +223,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                   <td>Mark</td> -->
                                   <?php
 
-                                  //Afiichage des étape de l'histoire
+                                  //Afiichage des étapes de l'histoire
 
                                   $sql = "CALL CRUD_STORY_ETAPE_READ($id)";
 
@@ -248,7 +248,6 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                         echo "<td>";
                                         echo $row["titre"];
                                         echo "<a href='delete.php?id=". $row["id"] ."&story = ' title='Supprimer cette étape' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-
                                         echo "</td>";
                                         echo "</tr>";
                                       }
