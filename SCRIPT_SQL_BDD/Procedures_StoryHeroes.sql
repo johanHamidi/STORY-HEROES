@@ -166,7 +166,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_STORY_GENRE_DELETE`(IN `pFk_id
     NO SQL
 DELETE FROM `story_genre`
 WHERE fk_id_story = pFk_id_story
-AND fk_id_genre = pFk_id_genre$$;
+AND fk_id_genre = pFk_id_genre $$
 
 
 -- TRIGERS --
