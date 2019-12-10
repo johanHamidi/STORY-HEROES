@@ -162,11 +162,11 @@ ELSE
 END IF$$
 
 DROP PROCEDURE IF EXISTS `CRUD_STORY_GENRE_DELETE`$$
-CREATE DEFINER=`story_heroes`@`localhost` PROCEDURE `CRUD_STORY_GENRE_DELETE`(IN `pId` INT(10))  MODIFIES SQL DATA
-    COMMENT 'CRUD DELETE de la table story_genre'
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_STORY_GENRE_DELETE`(IN `pFk_id_story` INT(10), IN `pFk_id_genre` INT(10))
+    NO SQL
 DELETE FROM `story_genre`
 WHERE fk_id_story = pFk_id_story
-AND fk_id_genre = pFk_id_genre $$
+AND fk_id_genre = pFk_id_genre$$;
 
 
 -- TRIGERS --
