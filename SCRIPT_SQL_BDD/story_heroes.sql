@@ -287,6 +287,7 @@ CREATE TABLE IF NOT EXISTS `story` (
   `titre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `resume` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `est_publie` tinyint(1) DEFAULT NULL,
+  `image` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `fk_id_auteur` int(10) NOT NULL,
   PRIMARY KEY (`id`,`fk_id_auteur`),
   KEY `STORY_USER_FK` (`fk_id_auteur`)
