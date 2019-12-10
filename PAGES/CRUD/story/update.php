@@ -235,6 +235,8 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                           <tr>
                                             <th scope="col">Étape</th>
                                             <th scope="col">Titre</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Fin ?</th>
                                           </tr>
                                         </thead>
                                         <tbody>
@@ -246,10 +248,34 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                         echo "</th>";
 
                                         echo "<td>";
-                                        echo $row["titre"];
-                                        echo "<a href='delete.php?id=". $row["id"] ."&story = ' title='Supprimer cette étape' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                        echo "<input type='text' value='". $row["titre"] ."'></input>";
+                                        echo "</td>";
+
+                                        echo "<td>";
+                                        echo "<textarea>".$row["description"] ."</textarea>";
+                                        echo "</td>";
+                                        $p = $row["est_une_fin"];
+                                        echo "<td>";
+                                        // echo "<input type='radio' name='est_une_fin'";
+                                        //   if($p == 1)
+                                        //   {
+                                        //     echo "checked";
+                                        //   }
+                                        //   echo "></input>";
+                                        echo "<input type='checkbox' name='est_une_fin'";
+                                          if($p == 1)
+                                          {
+                                            echo "checked";
+                                          }
+                                          echo "></input>";
 
                                         echo "</td>";
+
+                                        echo "<td>";
+                                        echo "<a href='delete.php?id=". $row["id"] ."&story = ' title='Supprimer cette étape' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                        echo "&nbsp<a href='../choix/create.php?id=". $row["id"] ."&story = ' title='Ajouter un choix' data-toggle='tooltip'><span class='glyphicon glyphicon-plus'></span></a>";
+                                        echo "</td>";
+
                                         echo "</tr>";
                                       }
                                   ?>
