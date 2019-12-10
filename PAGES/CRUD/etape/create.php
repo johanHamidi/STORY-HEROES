@@ -78,9 +78,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
       //Convertion de la chaîne "true" en valeur booléenne true
       if ($est_une_fin == "true") {
-        $est_une_fin = true;
+        $est_une_fin = 1;
       }else {
-        $est_une_fin = false;
+        $est_une_fin = 0;
       }
       $param_est_une_fin = $est_une_fin;
 
