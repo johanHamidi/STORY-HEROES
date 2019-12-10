@@ -255,14 +255,8 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                         echo "<td>";
                                         echo "<textarea>".$row["description"] ."</textarea>";
                                         echo "</td>";
-                                        $p = $row["est_une_fin"];
+
                                         echo "<td>";
-                                        // echo "<input type='radio' name='est_une_fin'";
-                                        //   if($p == 1)
-                                        //   {
-                                        //     echo "checked";
-                                        //   }
-                                        //   echo "></input>";
                                         echo "<input type='checkbox' name='est_une_fin'";
                                           if($p == 1)
                                           {
