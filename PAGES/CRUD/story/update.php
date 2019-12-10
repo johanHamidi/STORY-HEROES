@@ -50,7 +50,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             // Set parameters
             $param_titre = $titre;
             $param_resume = $resume;
-            if ($est_publie == TRUE) {
+            if ($est_publie == "true") {
               $est_publie = true;
             }else {
               $est_publie = false;
@@ -62,7 +62,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Records updated successfully. Redirect to landing page
-                header("location: ../../index.php");
+                header("location: index.php");
                 exit();
             } else{
                 echo "Something went wrong. Please try again later.";
@@ -170,24 +170,50 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 
                         </div>
 
+
                         <!-- Gestion des genres -->
                         <div class="form-group">
-                            <a href="" class="btn btn-success pull-right">Ajouter un genre</a>
+                            <a href="../story_genre/add_genre.php?idStory=<?php echo $_GET["id"]; ?>" class="btn btn-success pull-right">Ajouter un genre</a>
 
-                            <table class="table">
-                              <thead class="thead-dark">
-                                <tr>
-                                  <th scope="col">Genre de l'histoire</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>Policier</td>
-                                </tr>
-                              </tbody>
-                          </table>
+                            <?php
+
+                            //Afiichage des étape de l'histoire
+                            $sql = "CALL SPEC_STORY_GENRE($id)";
+
+                            if($result = $pdo->query($sql)){
+                              if($result->rowCount() > 0){
+                            ?>
+                                <table class="table">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th scope="col">Genre(s) de l'histoire</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                            <?php
+                                while($row = $result->fetch()){
+                                  echo "<tr>";
+                                  echo "<td>";
+                                  echo $row["libelle"];
+                                  echo "<a href='delete.php?id=". $row['fk_id_story'] . $row['fk_id_genre'] . "' title='Supprimer cette histoire' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                  echo "</td>";
+                                  echo "</tr>";
+                                }
+                            ?>
+                                    </tbody>
+                                </table>
+                            <?php
+                              }else{
+                                  echo "<p class='lead'><em>Aucun genre attibué à cet histoire</em></p>";
+                              }
+                              unset($result);
+                            }
+                            else{
+                                echo "ERROR: Could not able to execute $sql. " . $mysqli->error;
+                            }
+
+                            ?>
                         </div>
-
                         <!-- Gestion des étapes -->
                         <div class="form-group">
                             <a href="../etape/create.php?story=<?php echo $id; ?>" class="btn btn-success pull-right">Ajouter une étape</a>
@@ -198,6 +224,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                                   <?php
 
                                   //Afiichage des étape de l'histoire
+
                                   $sql = "CALL CRUD_STORY_ETAPE_READ($id)";
 
                                   if($result = $pdo->query($sql)){
@@ -220,6 +247,8 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 
                                         echo "<td>";
                                         echo $row["titre"];
+                                        echo "<a href='delete.php?id=". $row["id"] ."&story = ' title='Supprimer cette étape' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+
                                         echo "</td>";
                                         echo "</tr>";
                                       }
@@ -249,5 +278,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             </div>
         </div>
     </div>
+
+
 </body>
 </html>

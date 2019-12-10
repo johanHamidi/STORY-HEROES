@@ -3,10 +3,8 @@
 require_once "../../db/config.php";
 
 // Define variables and initialize with empty values
-$titre = $resume = $est_publie = "";
-$titre_err = $resume_err = $est_publie_err = "";
-
-
+$titre = $resume = $est_publie = $auteur = "";
+$titre_err = $resume_err = $est_publie_err = $auteur_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -26,36 +24,55 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $resume = $input_resume;
     }
 
+    // Liste auteur
+    $input_auteur = trim($_POST["auteur"]);
+    if(empty($input_auteur)){
+        $titre_err = "Sélectionnez un auteur";
+    } else{
+        $auteur = $input_auteur;
+    }
 
-    $image = $_POST['image'];
+    // Validate est_publie
+    // $input_est_publie = trim($_POST["est_publie"]);
+    // if(empty($input_est_publie)){
+    //     $est_publie_err = "Please enter the salary amount.";
+    // }else{
+    //     $est_publie = $input_est_publie;
+    // }
+
+    // Validate auteur
+    // $input_auteur = trim($_POST["fk_id_auteur"]);
+    // if(empty($input_auteur)){
+    //     $auteur_err = "Auteur de l'histoire";
+    // } else{
+    //     $auteur = $input_auteur;
+    // }
+
+
 
     // Check input errors before inserting in database
     if(empty($titre_err) && empty($resume_err) && empty($est_publie_err)){
         // Prepare an insert statement
-        $sql = "CALL CRUD_STORY_INSERT(:titre, :resume, :est_publie, :image, :fk_id_auteur)";
+        $sql = "CALL CRUD_STORY_INSERT(:titre, :resume, :est_publie, :fk_id_auteur)";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":titre", $param_titre);
             $stmt->bindParam(":resume", $param_resume);
             $stmt->bindParam(":est_publie", $param_est_publie);
-            $stmt->bindParam(":image", $param_image);
             $stmt->bindParam(":fk_id_auteur", $param_auteur);
-
 
             // Set parameters
             $param_titre = $titre;
             $param_resume = $resume;
             $param_est_publie = 0;
             //$param_auteur = $auteur;
-            $param_image = $image;
-            $param_auteur = 6;
-
+            $param_auteur = $auteur;
 
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Records created successfully. Redirect to landing page
-                header("location: ../../index.php");
+                header("location: index.php");
                 exit();
             } else{
                 echo "Something went wrong. Please try again later.";
@@ -105,21 +122,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <span class="help-block"><?php echo $resume_err;?></span>
                         </div>
 
-                        <h5><b>Image</b></h5>
-      <form enctype="multipart/form-data" action="#" method="post">
-         <input type="hidden" name="MAX_FILE_SIZE" value="250000" />
-         <input type="file" name="image" size=50 />
-         <input type="submit" value="OK" />
-      </form> </br>
+                        <!-- Liste des auteurs -->
+                        <div class="form-group <?php echo (!empty($auteur_err)) ? 'has-error' : ''; ?>">
+                            <label>Auteur de l'histoire</label>
+                            <select class="form-control" name="auteur">
 
-                       <?php /*
-                        echo "<pre>";
-                        print_r($_SESSION);
-                        echo "</pre>";*/ ?>
+                          <?php
+                          $sql = "CALL CRUD_USER_READ(0)";
+                          if($result = $pdo->query($sql)){
+                              if($result->rowCount() > 0){
+                              while($row = $result->fetch()){
+                                echo "<option value=$row[id]>";
+                                echo $row["pseudo"];
+                                echo "</option>";
+                              }
+                            }
+                          }
+                          ?>
+
+                          </select>
+                            <span class="help-block"><?php echo $auteur_err;?></span>
+                        </div>
+
+
+
+
+
 
 
                         <input type="submit" class="btn btn-primary" value="Ajouter l'histoire">
-                        <a href="../../index.php" class="btn btn-default">Retour</a>
+                        <a href="index.php" class="btn btn-default">Cancel</a>
                     </form>
                 </div>
             </div>
