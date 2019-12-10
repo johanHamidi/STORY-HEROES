@@ -56,7 +56,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Records updated successfully. Redirect to landing page
-                header("location: index.php");
+                header("location: ../../home.php");
                 exit();
             } else{
                 echo "Something went wrong. Please try again later.";
@@ -158,7 +158,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         </div>
                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>
                         <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="index.php" class="btn btn-default">Cancel</a>
+                        <a href="../../home.php" class="btn btn-default">Cancel</a>
                     </form>
                 </div>
             </div>
