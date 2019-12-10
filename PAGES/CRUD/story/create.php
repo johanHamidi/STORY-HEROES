@@ -32,7 +32,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $auteur = $input_auteur;
     }
 
-    $image = $_POST["Image"];
+    //$image = $_POST["Image"];
+    $image = "null";
 
     // Validate est_publie
     // $input_est_publie = trim($_POST["est_publie"]);
@@ -62,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->bindParam(":titre", $param_titre);
             $stmt->bindParam(":resume", $param_resume);
             $stmt->bindParam(":est_publie", $param_est_publie);
-            $stmt->bindParam(":image", $param_est_publie);
+            $stmt->bindParam(":image", $param_image);
             $stmt->bindParam(":fk_id_auteur", $param_auteur);
 
             // Set parameters
@@ -153,8 +154,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-                        <form enctype="multipart/form-data" method="post" action="ajoutPostuler.php">
-                        </form>
+                       <!-- <form enctype="multipart/form-data" method="post" action="ajoutPostuler.php">
+                        </form>!-->
 
 
 
