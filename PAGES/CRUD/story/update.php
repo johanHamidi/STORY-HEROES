@@ -51,9 +51,9 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             $param_titre = $titre;
             $param_resume = $resume;
             if ($est_publie == "true") {
-              $est_publie = true;
+              $est_publie = 1;
             }else {
-              $est_publie = false;
+              $est_publie = 0;
             }
 
             $param_est_publie = $est_publie;
@@ -62,7 +62,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Records updated successfully. Redirect to landing page
-                header("location: index.php");
+                header("location: ../../home.php");
                 exit();
             } else{
                 echo "Something went wrong. Please try again later.";
@@ -272,7 +272,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 
                         <input type="hidden" name="id" value="<?php echo $id; ?>"/>
                         <input type="submit" class="btn btn-primary" value="Enregistrer les modifications">
-                        <a href="index.php" class="btn btn-default">Retour</a>
+                        <a href="../../home.php" class="btn btn-default">Retour</a>
                     </form>
                 </div>
             </div>
