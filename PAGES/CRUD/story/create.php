@@ -32,6 +32,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $auteur = $input_auteur;
     }
 
+    $image = $_POST["Image"];
+
     // Validate est_publie
     // $input_est_publie = trim($_POST["est_publie"]);
     // if(empty($input_est_publie)){
@@ -53,13 +55,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($titre_err) && empty($resume_err) && empty($est_publie_err)){
         // Prepare an insert statement
-        $sql = "CALL CRUD_STORY_INSERT(:titre, :resume, :est_publie, :fk_id_auteur)";
+        $sql = "CALL CRUD_STORY_INSERT(:titre, :resume, :est_publie, :image, :fk_id_auteur)";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":titre", $param_titre);
             $stmt->bindParam(":resume", $param_resume);
             $stmt->bindParam(":est_publie", $param_est_publie);
+            $stmt->bindParam(":image", $param_est_publie);
             $stmt->bindParam(":fk_id_auteur", $param_auteur);
 
             // Set parameters
@@ -67,12 +70,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_resume = $resume;
             $param_est_publie = 0;
             //$param_auteur = $auteur;
+            $param_image = $image;
             $param_auteur = $auteur;
 
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Records created successfully. Redirect to landing page
-                header("location: index.php");
+                header("location: ../../home.php");
                 exit();
             } else{
                 echo "Something went wrong. Please try again later.";
@@ -149,9 +153,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
+                        <form enctype="multipart/form-data" method="post" action="ajoutPostuler.php">
+                        </form>
+
+
+
+
 
                         <input type="submit" class="btn btn-primary" value="Ajouter l'histoire">
-                        <a href="index.php" class="btn btn-default">Cancel</a>
+                        <a href="../../home.php" class="btn btn-default">Cancel</a>
                     </form>
                 </div>
             </div>

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="CRUD/style/bootstrap.css">
-    <script src="CRUD/style/jquery.min.js"></script>
-    <script src="CRUD/style/bootstrap.js"></script>
+    <link rel="stylesheet" href="./CRUD/style/bootstrap.css">
+    <script src="./CRUD/style/jquery.min.js"></script>
+    <script src="./CRUD/style/bootstrap.js"></script>
     <style type="text/css">
         .wrapper{
             width: 90%;
@@ -31,11 +31,11 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Histoire</h2>
-                        <a href="CRUD/story/create.php" class="btn btn-success pull-right">Ajouter une histoire</a>
+                        <a href="create.php" class="btn btn-success pull-right">Ajouter une histoire</a>
                     </div>
                     <?php
                     // Include config file
-                    require_once "db/config.php";
+                    require_once "../../db/config.php";
 
                     // Attempt select query execution
                     $sql = "CALL SPEC_STORY_INDEX(0)";
@@ -46,6 +46,7 @@
                                     echo "<tr>";
                                         echo "<th>Titre</th>";
                                         echo "<th>Auteur</th>";
+                                        echo "<th>Image</th>";
                                         echo "<th>Publiée</th>";
                                         echo "<th></th>";
                                     echo "</tr>";
@@ -56,12 +57,18 @@
                                   if($row['est_publie'] == 1){$class = "bg-success"; $contenu = "En ligne";}else{$class = "bg-danger"; $contenu = "Hors ligne";}
 
                                     echo "<tr>";
+
+                                        echo "<td>" . $row['titre'] . "</td>";
+                                        echo "<td>" . $row['pseudo'] . "</td>";
+                                        echo "<td>" . $row['image'] . "</td>";
+
                                         echo "<td>" . utf8_decode($row['titre']) . "</td>";
                                         echo "<td>" . utf8_decode($row['pseudo']) . "</td>";
+
                                         echo "<td class=$class>" . $contenu . "</td>";
                                         echo "<td>";
-                                            echo "<a href='CRUD/story/update.php?id=". $row['id'] ."' title='Modifier cette histoire' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='CRUD/story/delete.php?id=". $row['id'] ."' title='Supprimer cette histoire' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                            echo "<a href='update.php?id=". $row['id'] ."' title='Modifier cette histoire' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='delete.php?id=". $row['id'] ."' title='Supprimer cette histoire' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }

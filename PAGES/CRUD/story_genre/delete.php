@@ -69,7 +69,7 @@ if(isset($_POST["story"]) && !empty($_POST["story"]) && isset($_POST["genre"]) &
                             <p>Etes vous sur de vouloir supprimer ce genre</p><br>
                             <p>
                                 <input type="submit" value="Oui" class="btn btn-danger">
-                                <a href="../story/index.php" class="btn btn-default">Non</a>
+                                <a href="../../home.php" class="btn btn-default">Non</a>
                             </p>
                         </div>
                     </form>
