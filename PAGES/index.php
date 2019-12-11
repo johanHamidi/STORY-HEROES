@@ -20,16 +20,26 @@
                 <h1>Story Heroes</h1>
             </div>
             <p class="accroche">Evadez vous, laissez cours à vote imagination et vivez de grandes aventures !</p>
-            <a href="connexion.php">
-                <button>Connexion</button>
-            </a>
-            <a href="inscription.html">
-                <p class="inscriptionAccueil">Inscription</p>
-            </a>
+            <div style="margin:10%;"></div>
 
+            <div class="group-btn">
+                <a href="home.php">
+                    <button>Découvrir dès maintenant</button>
+                </a>
+            </div>
+
+            <div style="margin:5%;"></div>
+            <div class="group-btn">
+                <a href="connexion.php">
+                    <button>Connexion</button>
+                </a>
+                <a href="inscription.php">
+                    <button>Inscription</button>
+                </a>
+            </div>
         </div>
     </div>
 
 </body>
 
-</html> 
+</html>
