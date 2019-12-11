@@ -11,23 +11,29 @@
     height: 100vh;
     margin-left: 65%;
     padding : 82px 0;
-    
+
 }
 
 .accueil button {
-    
+
     border : solid 2px #661600;
     color : #661600;
-    margin : 18% 25%;
+    background: #D9AC71;
+    /*margin : 18% 25%;*/
+    margin: 2%;
     padding :  8px 24px ;
     font-size : 1.2rem;
+    transition: background-color 0.5s ease-out;
 }
 
 .accueil button:hover {
         background: #661600;
         color: #ccab74;
 }
-    
+
+div .group-btn {
+    text-align: center;
+}
 
 .flexAccueil {
     display: flex;
@@ -109,7 +115,7 @@ h1 {
 
  .flexForm label {
      width : 100%;
-     
+
  }
 
  .centerForm {
