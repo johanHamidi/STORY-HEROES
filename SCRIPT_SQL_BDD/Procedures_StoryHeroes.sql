@@ -165,6 +165,13 @@ ELSE
     WHERE u.id = CONVERT(pId, SIGNED INTEGER) OR u.pseudo = pId;
 END IF$$
 
+DROP PROCEDURE IF EXISTS `CRUD_CHOIX_INSERT`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CRUD_CHOIX_INSERT`(IN `pLibelle` VARCHAR(50), IN `pDestination` INT(10), IN `pFk_Id_Etape` INT(10))
+    NO SQL
+    COMMENT 'CRUD INSERT de la table choix'
+INSERT INTO choix (libelle, destination, fk_id_etape)
+VALUES (pLibelle, pDestination, pFk_Id_Etape)$$
+
 DELIMITER ;
 
 

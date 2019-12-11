@@ -272,7 +272,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
 
                                         echo "<td>";
                                         echo "<a href='delete.php?id=". $row["id"] ."&story = ' title='Supprimer cette étape' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-                                        echo "&nbsp<a href='../choix/create.php?id=". $row["id"] ."&story = ' title='Ajouter un choix' data-toggle='tooltip'><span class='glyphicon glyphicon-plus'></span></a>";
+                                        echo "&nbsp<a href='../choix/create.php?story=" . $id . "&id=". $row["id"] . "' title='Ajouter un choix' data-toggle='tooltip'><span class='glyphicon glyphicon-plus'></span></a>";
                                         echo "</td>";
 
                                         echo "</tr>";
